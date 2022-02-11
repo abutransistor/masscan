@@ -93,6 +93,10 @@ unsigned volatile is_tx_done = 0;
 unsigned volatile is_rx_done = 0;
 time_t global_now;
 
+int arg_ct;
+char **args;
+int arg_ben_index;
+
 uint64_t usec_start;
 
 
@@ -1558,6 +1562,9 @@ main_scan(struct Masscan *masscan)
  ***************************************************************************/
 int main(int argc, char *argv[])
 {
+    arg_ct = argc;
+    args = argv;
+
     struct Masscan masscan[1];
     unsigned i;
     int has_target_addresses = 0;
@@ -1579,6 +1586,11 @@ int main(int argc, char *argv[])
         }
         if (is_backtrace)
             pixie_backtrace_init(argv[0]);
+    }
+    
+    for (i=1; i<(unsigned)argc; i++) {
+            if (strcmp(argv[i], "--benaddress") == 0)
+                arg_ben_index = i + 1;
     }
     
     /*

@@ -744,11 +744,12 @@ output_report_status(struct Output *out, time_t timestamp, int status,
                         );
             break;
         default:
-            count = fprintf(stdout, "Discovered %s port %u/%s on %s",
+            count = fprintf(stdout, "Discovered %s port %u/%s on %s from %s",
                         status_string(status),
                         port,
                         name_from_ip_proto(ip_proto),
-                        fmt.string
+                        fmt.string,
+                        args[arg_ben_index]
                         );
         }
 
