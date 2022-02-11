@@ -2572,7 +2572,10 @@ masscan_set_parameter(struct Masscan *masscan,
             masscan->wait = (unsigned)parseInt(value);
     } else if (EQUALS("webxml", name)) {
         masscan_set_parameter(masscan, "stylesheet", "http://nmap.org/svn/docs/nmap.xsl");
-    } else {
+    } else if (EQUALS("benaddress", name)) {
+
+    }
+    else {
         fprintf(stderr, "CONF: unknown config option: %s=%s\n", name, value);
         exit(1);
     }
